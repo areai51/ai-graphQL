@@ -6,7 +6,7 @@ This app demonstrates how you can use a Lambda function as an AWS AppSync dataso
 
 ## Getting Started
 
-### React Native setup
+### React setup
 
 1. clone the project   
 
@@ -100,4 +100,9 @@ const awsmobile = {
   'aws_appsync_authenticationType': 'API_KEY',
   'aws_appsync_apiKey': 'da2-xxxxxxxxxxxxxxxxxxxxxxxxxx',
 }
+```
+
+### Run Application
+```
+npm start
 ```

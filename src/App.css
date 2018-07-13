@@ -1,0 +1,108 @@
+.body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.body > div {
+  
+  position: relative;
+  width: 80%;
+  height: 100%;
+}
+
+
+.body > div > textarea {
+  width: 100%;
+  resize: none;
+  outline: none;
+  height: 350px;
+  padding: 10px;
+  background-color: #ededed;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.loader{
+  background: #000;
+  opacity: 0.5;
+  display: block;
+  height: 100%;
+  float: left;
+  width: 100%;
+  position: absolute;
+  top: 0;
+}
+
+.loader .symbol {
+  border: 5px solid #f3f3f3; /* Light grey */
+  border-top: 5px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 2s linear infinite;
+  transform: translate(-50%,-50%);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.btn-container {
+  margin-top: 25px;
+}
+
+.btn-container > button{
+  margin: 0 11px 0 0;
+  border-radius: 6px;
+}
+
+.btn-group-parent .btn > i{
+  padding: 5px 10px;
+  margin: 0 10px;
+  background: #337ab7;
+  border-radius: 50%;
+  width: 51px;
+}
+
+.btn-group-parent .btn > i::before{
+  content: '\2713';
+  color: white;
+}
+
+.btn-container > button:last-child{
+  margin: 0;
+}
+
+.btn {
+  padding: 16px 20px;
+  border-radius: 2px;
+  cursor: pointer;
+  text-transform: capitalize;
+  font-size: 14px;
+}
+
+.btn-primary {    
+  background-color: #337ab7;
+  border-color: #2e6da4;
+  color: #fff;
+}
+
+.btn-group-parent {
+  display: flex;
+}
+
+.btn-group-parent > .btn{
+  padding: 18px 20px;
+  width: 100%;
+  outline: none;
+  font-size: 14px;
+}
+
+button.selected {
+  background-color: #efefef;
+}
