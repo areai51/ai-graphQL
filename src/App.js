@@ -67,20 +67,18 @@ export default class App extends Component {
         placeholder="Enter a text"
         />
         <div className="btn-container">
-          <button
+          <button disabled={this.state.loading}
             className="btn btn-primary"
-            onClick={this.translate}>Translate
+            onClick={this.translate}><span className="button-text" >Translate</span> { this.state.loading &&<span className="symbol"></span>
+          }
           </button>
           { this.state.enableplay &&
             <button
             className="btn btn-primary"
-            onClick={this.playSound}>Play Sound
+            onClick={this.playSound}>Play Sound 
             </button>
           }
         </div>
-        { this.state.loading &&
-        <div className="loader"><span class="symbol"></span></div>
-        }
       </div>
      </div>
     );
