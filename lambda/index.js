@@ -5,7 +5,7 @@ const translate = new AWS.Translate();
 const polly = new AWS.Polly();
 const s3 = new AWS.S3({
   params: {
-    Bucket: 'YOURBUCKETNAME',
+    Bucket: 'shouvik-appsync-lambda-ai',
   }
 })
 
@@ -27,7 +27,7 @@ exports.handler = (event, context, callback) => {
       'pt': 'Vitoria',
       'de': 'Vicki',
       'en': 'Joanna',
-      'fr': 'Celine'
+      'fr': 'Mathieu'
     }
 
     const voice = voices[event.code]
