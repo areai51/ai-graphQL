@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 
-
+import awsmobile from './aws-exports';
 import { API, graphqlOperation } from 'aws-amplify';
 import codes from './codes';
 import query from './query';
 import ButtonGroup from './Buttongroup';
+
 import  './App.css';
 
 const buttons = [
@@ -21,10 +22,11 @@ export default class App extends Component {
     sentence: '',
     mp3Url: '',
     loading: false,
-    enableplay:false
+    langSelected:''
   }
   updateIndex = index => {
     this.setState({ index });
+    this.setState({ langSelected:buttons[index]});
   }
   onChangeText = (e) => {
     this.setState({ sentence: e.target.value })
@@ -34,12 +36,11 @@ export default class App extends Component {
     const code = codes[this.state.index].code
     try {
       this.setState({ loading: true });
-      this.setState({ enableplay: false });
       const translation = await API.graphql(graphqlOperation(query, { sentence: this.state.sentence, code: code }))
       const { sentence } = translation.data.getTranslatedSentence
-      const mp3Url = `https://s3.ap-south-1.amazonaws.com/YOURBUCKETNAME/${sentence}`
-      this.setState({ mp3Url, loading: false });
-      this.setState({ enableplay: true });
+      const mp3Url = awsmobile.aws_s3_url+sentence;
+      this.setState({ mp3Url});
+      this.playSound();
     } catch (error) {
       console.log('error translating : ', error)
       this.setState({ loading: false })
@@ -48,8 +49,11 @@ export default class App extends Component {
   playSound = () => {
     const audio = new Audio(this.state.mp3Url);
     try {
-      audio.play();
-      this.setState({ sentence: '' })
+      audio.play().then(()=>{
+        this.setState({loading: false });
+      },(err)=>{
+        console.dir('error',err);
+      });
     }
     catch (error) {
       console.log('playback failed due to audio decoding errors, '+ error);
@@ -60,16 +64,16 @@ export default class App extends Component {
     return (
      <div className="body">
       <div>
-        <ButtonGroup activebtn={this.state.index} buttons={buttons} onButtonClick={this.updateIndex} />
         <textarea 
         value={this.state.sentence} 
         onChange={this.onChangeText} 
         placeholder="Enter a text"
         />
+        <ButtonGroup activebtn={this.state.index} buttons={buttons} onButtonClick={this.updateIndex} />
         <div className="btn-container">
           <button disabled={this.state.loading}
             className="btn btn-primary"
-            onClick={this.translate}><span className="button-text" >Translate</span> { this.state.loading &&<span className="symbol"></span>
+            onClick={this.translate}><span className="button-text" >Translate {this.state.langSelected && 'to '+this.state.langSelected}</span> { this.state.loading &&<span className="symbol"></span>
           }
           </button>
           { this.state.enableplay &&
