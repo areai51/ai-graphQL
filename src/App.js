@@ -37,7 +37,7 @@ export default class App extends Component {
       this.setState({ enableplay: false });
       const translation = await API.graphql(graphqlOperation(query, { sentence: this.state.sentence, code: code }))
       const { sentence } = translation.data.getTranslatedSentence
-      const mp3Url = `https://s3.ap-south-1.amazonaws.com/YOURBUCKETNAME/${sentence}`
+      const mp3Url = `https://s3.ap-south-1.amazonaws.com/shouvik-appsync-lambda-ai/${sentence}`
       this.setState({ mp3Url, loading: false });
       this.setState({ enableplay: true });
     } catch (error) {
