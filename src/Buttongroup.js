@@ -10,11 +10,13 @@ export default ({
             buttons && (
                 buttons.map((value,index)=>{
                     return (
-                    <button 
-                        className={"btn " + ( (activebtn === index) ? 'selected' : '' ) }
-                        key={index} 
-                        onClick={()=>onButtonClick(index)}>{value}
-                    </button>
+                    <div key={'radiowrapper'+index}  className='languages'>
+                        <input type='radio' name='language' id={'lang'+index} value={value}
+                            className={"btn " + ( (activebtn === index) ? 'selected' : '' ) }
+                            key={'radio'+index} 
+                            onClick={()=>onButtonClick(index)}/>
+                        <label key={'label'+index} htmlFor={'lang'+index}>{value}</label>
+                    </div>
                     )
                 })
             )
