@@ -9,6 +9,7 @@
   position: relative;
   width: 80%;
   height: 100%;
+  margin:40px auto;
 }
 
 
@@ -22,29 +23,18 @@
   font-size: 16px;
   box-sizing: border-box;
 }
-
-.loader{
-  background: #000;
-  opacity: 0.5;
-  display: block;
-  height: 100%;
-  float: left;
-  width: 100%;
-  position: absolute;
-  top: 0;
+.button-text{
+  vertical-align: super;
 }
-
-.loader .symbol {
-  border: 5px solid #f3f3f3; /* Light grey */
-  border-top: 5px solid #3498db; /* Blue */
+.symbol {
+  border: 4px solid #f3f3f3; /* Light grey */
+  border-top: 4px solid #3498db; /* Blue */
   border-radius: 50%;
-  width: 50px;
-  height: 50px;
+  width: 10px;
+  height: 9px;
   animation: spin 2s linear infinite;
-  transform: translate(-50%,-50%);
-  position: absolute;
-  left: 50%;
-  top: 50%;
+  display: inline-block;
+  margin: 0px 5px;
 }
 
 @keyframes spin {
@@ -59,6 +49,12 @@
 .btn-container > button{
   margin: 0 11px 0 0;
   border-radius: 6px;
+}
+
+.btn-container > button:disabled{
+  background: #ccc;
+  color: rgb(126, 124, 124);
+  border:none;
 }
 
 .btn-group-parent .btn > i{
@@ -96,13 +92,18 @@
   display: flex;
 }
 
-.btn-group-parent > .btn{
-  padding: 18px 20px;
-  width: 100%;
-  outline: none;
-  font-size: 14px;
+.btn-group-parent{
+  padding:20px 0 0;
 }
 
-button.selected {
-  background-color: #efefef;
+.btn-group-parent .languages > .btn{
+  height: 20px;
+  width: 20px;
+}
+
+.btn-group-parent .languages{
+  margin-right: 10px;
+}
+.btn-group-parent .languages > label{
+  font-size: 20px;
 }
